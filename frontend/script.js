@@ -1,5 +1,5 @@
 'use strict';
-const API_BASE=(window.BSS_API_BASE||'').replace(/\/$/,'')+'/api';
+const API_BASE=(window.BSS_API_BASE||'https://bhasha-shiksha-setu-backend.onrender.com').replace(/\/$/,'')+'/api';
 const $=s=>document.querySelector(s); const messages=$('#messages');
 function add(text,who='bot'){const d=document.createElement('div');d.className='bubble '+who;d.textContent=text;messages.appendChild(d);messages.scrollTop=messages.scrollHeight;return d}
 async function api(path,opts={}){const r=await fetch(API_BASE+path,{...opts,headers:{'Content-Type':'application/json',...(opts.headers||{})}});let data={};try{data=await r.json()}catch{}if(!r.ok)throw new Error(data.error||`Request failed (${r.status})`);return data}
